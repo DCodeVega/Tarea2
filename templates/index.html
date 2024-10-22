@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/style.css') }}">
+    <title>Practica 2</title>
+</head>
+<body>
+    <h1>Práctica N° 2</h1>
+
+    <h2>Objeto Request</h2>
+
+    <div class="menu">
+        <a href="{{ url_for('inscripcion') }}">Inscripción en Curso</a>
+        <a href="{{ url_for('registro') }}">Registro de Usuarios</a>
+        <a href="{{ url_for('productos') }}">Registro de Productos</a>
+        <a href="{{ url_for('libros') }}">Registro de Libros</a>
+    </div>
+    <div>
+        <h2>Datos recibidos</h2>
+
+        <h3>Inscripciones de Curso</h3>
+        {% if inscripcion %}
+            <p>{{ inscripcion.nombre }}</p>
+        {% else %}
+            <p>No hay inscripciones registradas</p>
+        {% endif %}
+        <h3>Registro de Usuarios</h3>
+        {% if usuarios %}
+        {% for usuario in usuarios %}
+            <div>
+                <p>Nombre: {{ usuario.nombre }}</p>
+                <p>Apellidos: {{ usuario.apellidos }}</p>
+                <p>Email: {{ usuario.email }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay usuarios registrados</p>
+    {% endif %}
+        <h3>Registro de Productos</h3>
+        {% if productos %}
+        {% for producto in productos %}
+            <div>
+                <p>Producto: {{ producto.producto }}</p>
+                <p>Categoría: {{ producto.categoria }}</p>
+                <p>Existencia: {{ producto.existencia }}</p>
+                <p>Precio: {{ producto.precio }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay productos registrados</p>
+    {% endif %}
+        <h3>Registro de Libros</h3>
+        {% if libros %}
+        {% for libro in libros %}
+            <div>
+                <p>Título: {{ libro.titulo }}</p>
+                <p>Autor: {{ libro.autor }}</p>
+                <p>Resumen: {{ libro.resumen }}</p>
+                <p>Medio: {{ libro.medio }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay libros registrados</p>
+    {% endif %}
+    </div>
+</body>
+</html>
